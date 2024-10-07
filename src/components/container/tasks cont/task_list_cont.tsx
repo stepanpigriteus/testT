@@ -1,15 +1,25 @@
+
+import { observer } from "mobx-react-lite";
+import todoStore from "../../../stores/toDoStore";
 import TaskItem from "../../task_item/task_item";
 
 
-export default function TaskList() {
+ function TaskList() {
+    const {todos} = todoStore
+
     return(
         <>
-        <section className="min-w-[30%] max-w-[45%] m-0 min-h-[478px] px-4 py-4  shadow-md bg-[rgba(15,33,63,0.8)] rounded-l-lg ">
-        <ul>
-        <TaskItem/>
-        <TaskItem/>
-        </ul>
+        <section className="min-w-[40%] max-w-[45%] m-0 min-h-[478px] px-4 py-4  shadow-md bg-[rgba(15,33,63,0.8)] rounded-l-lg ">
+            <h1 className="text-2xl text-white font-medium mb-4 text-left">Задачи</h1>
+            <ul >
+                {todos.map( (el, i) =>
+                    <TaskItem key={i} title={el.text} checked={el.checked} index={i} />
+                )}
+                
+            </ul>
         </section>
         </>
     )
 }
+
+export default observer( TaskList);

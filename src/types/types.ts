@@ -1,6 +1,6 @@
-interface Task {
-    id: number;
+export interface Task {
+    id: string;
     title: string;
-    subtasks?: Task[];
-}
-
+    completed: boolean;
+    createdAt: Date;
+  }

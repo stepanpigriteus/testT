@@ -1,18 +1,27 @@
+import { observer } from "mobx-react-lite";
 import todoStore from "../../stores/toDoStore";
+import Portal from "../modal/portal";
 
 interface TaskItemProps {
     title: string; 
     checked: boolean; 
     index: number;
+    id: string
 }
 
-export default function TaskItem({ title, checked, index }:TaskItemProps) {
+
+
+function TaskItem({ title, checked, index,id }:TaskItemProps) {
     const handleCheckboxChange = () => {
         todoStore.toggleTodo(index); 
     };
 
     const handleSel = () => {
         todoStore.selectTodo(index );
+    }
+
+    const handlePortal = () => {
+        todoStore.addSubtask(Number(id) );
     }
 
     return(
@@ -26,6 +35,7 @@ export default function TaskItem({ title, checked, index }:TaskItemProps) {
                 <input
                     type="checkbox"
                     checked={checked}
+                    id={id}
                     onChange={handleCheckboxChange}
                     className="mr-2 "
                     onBlur={(e) => todoStore.updateDescription(e.target.value)} 
@@ -36,8 +46,8 @@ export default function TaskItem({ title, checked, index }:TaskItemProps) {
             <div> 
             <button 
                 type="button"
-                className="ml-4 bg-transparent p-1 text-white-500 text-[0.7rem] min-h-1 min-w-1 border-0  focus:outline-none"
-                onClick={() => todoStore.removeTodo(index)}    
+                className="ml-4 bg-transparent p-1 text-white-500 text-[1rem] min-h-1 min-w-1 border-0  focus:outline-none"
+                onClick={handlePortal}    
             >
                 +
             </button>
@@ -51,6 +61,9 @@ export default function TaskItem({ title, checked, index }:TaskItemProps) {
             </div>
             
         </li>
+        {todoStore.showPortal && <Portal onClose={todoStore.closePortal} id={id} />}
         </>
     )
 }
+
+export default observer(TaskItem)

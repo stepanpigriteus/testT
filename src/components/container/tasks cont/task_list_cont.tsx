@@ -13,7 +13,7 @@ import TaskItem from "../../task_item/task_item";
             <h3 className="text-2xl text-white font-medium mb-4 text-left">Задачи</h3>
             <ul >
                 {todos.map( (el, i) =>
-                    <TaskItem key={i} title={el.text} checked={el.checked} index={i} />
+                    <TaskItem key={i} title={el.text} checked={el.checked} index={i} id={String(el.id)} />
                 )}
                 
             </ul>

@@ -5,7 +5,7 @@ import { useState } from "react";
 
 
 function TaskButtons() {
-    const { addTodo, selectAll, deselectAll, todos } = todoStore;
+    const { addTodo, selectAll, deselectAll, removeTodo } = todoStore;
     const [newTask, setNewTask] = useState('');
 
     const handleAdd = () => {
@@ -21,6 +21,7 @@ function TaskButtons() {
         }
     };
 
+
     return (
         <>
             <input
@@ -30,14 +31,14 @@ function TaskButtons() {
                 onKeyDown={handleKeyDown}
                 className="border border-gray-300 rounded py-1 px-2 m-1"
             />
-            <button onClick={handleAdd} type="button" className="font-light bg-black bg-opacity-40 py-2 px-2 text-xs text-white m-1 rounded hover:bg-black hover:bg-opacity-55">
+            <button onClick={handleAdd} type="button" className="font-light bg-black bg-opacity-85 py-2 px-2 text-xs text-white m-1 rounded hover:bg-black hover:bg-opacity-55">
                 Добавить
             </button>
-            <button onClick={selectAll} className="font-light bg-black bg-opacity-40 py-2 px-2 text-xs text-white m-1 rounded hover:bg-black hover:bg-opacity-55">
-                &#10003; все
+            <button onClick={selectAll} className="font-light bg-black bg-opacity-85 py-2 px-2 text-xs text-white m-1 rounded hover:bg-black hover:bg-opacity-55">
+                &#128505; все
             </button>
-            <button onClick={deselectAll} className="font-light bg-black bg-opacity-40 py-2 px-2 text-xs text-white m-1 rounded hover:bg-black hover:bg-opacity-55">
-                &#120; все
+            <button onClick={deselectAll} className="font-light bg-black bg-opacity-85 py-2 px-2 text-xs text-white m-1 rounded hover:bg-black hover:bg-opacity-55">
+                &#128503; все
             </button>
         </>
     );

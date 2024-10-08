@@ -18,8 +18,15 @@ class TodoStore {
   addTodo = (todo: string) => {
     const newTodo = { text: todo, checked: false, description: '' }; 
     this.todos.push(newTodo);
-    this.selectedTodo = newTodo; 
+    this.selectTodo(this.todos.length - 1); // Сразу выбираем новую задачу
   };
+
+  @action
+  updateDescription = (description: string) => {
+    if (this.selectedTodo) {
+      this.selectedTodo.description = description;
+    }
+};
 
   @action
   toggleTodo = (index: number) => {

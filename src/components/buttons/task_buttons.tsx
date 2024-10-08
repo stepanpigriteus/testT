@@ -40,6 +40,10 @@ function TaskButtons() {
             <button onClick={deselectAll} className="font-light bg-black bg-opacity-85 py-2 px-2 text-xs text-white m-1 rounded hover:bg-black hover:bg-opacity-55">
                 &#128503; все
             </button>
+            <button onClick={deselectAll} className="font-light bg-black bg-opacity-85 py-2 px-2 text-xs text-white m-1 rounded hover:bg-black hover:bg-opacity-55">
+                 &#128465; все
+            </button>
+            
         </>
     );
 }

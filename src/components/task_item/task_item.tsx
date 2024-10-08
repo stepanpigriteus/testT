@@ -1,14 +1,14 @@
 import todoStore from "../../stores/toDoStore";
 
 interface TaskItemProps {
-    title: string; // Заголовок задачи
-    checked: boolean; // Статус завершения задачи
+    title: string; 
+    checked: boolean; 
     index: number;
 }
 
 export default function TaskItem({ title, checked, index }:TaskItemProps) {
     const handleCheckboxChange = () => {
-        todoStore.toggleTodo(index); // Переключение состояния задачи
+        todoStore.toggleTodo(index); 
     };
 
     const handleSel = () => {
@@ -27,18 +27,29 @@ export default function TaskItem({ title, checked, index }:TaskItemProps) {
                     type="checkbox"
                     checked={checked}
                     onChange={handleCheckboxChange}
-                    className="mr-2"
+                    className="mr-2 "
+                    onBlur={(e) => todoStore.updateDescription(e.target.value)} 
                     onClick={() => todoStore.handleClick(index)}
                 />
                 {title}
             </div>
+            <div> 
             <button 
                 type="button"
                 className="ml-4 bg-transparent p-1 text-white-500 text-[0.7rem] min-h-1 min-w-1 border-0  focus:outline-none"
                 onClick={() => todoStore.removeTodo(index)}    
             >
+                +
+            </button>
+            <button 
+                type="button"
+                className="ml-2 bg-transparent p-1 text-white-500 text-[0.7rem] min-h-1 min-w-1 border-0  focus:outline-none"
+                onClick={() => todoStore.removeTodo(index)}    
+            >
                 X
             </button>
+            </div>
+            
         </li>
         </>
     )

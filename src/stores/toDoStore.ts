@@ -70,6 +70,13 @@ class TodoStore {
       this.selectedTodo = null; 
     }
   };
+
+  @action
+  updateSelectedTodoDescription = (description: string) => {
+    if (this.selectedTodo) {
+      this.selectedTodo.description = description;
+    }
+  };
   
   removeCheckedTodos = () => {
     const checkedTodos = this.todos.filter(todo => todo.checked);
@@ -86,13 +93,10 @@ class TodoStore {
 
 
   @action
-  addSubtask = (id: number) => {
-    console.log(id);
-    console.log(this.showPortal);
+  addSubtask = (id: number, index: number) => {
     const todo = this.todos.find(t => t.id === id);
     if (todo) {
-        // Убедитесь, что состояние обновляется через action
-        this.showPortal = true; // Обновление состояния должно триггерить реактивное обновление
+        this.showPortal = true; 
     }
 };
 
